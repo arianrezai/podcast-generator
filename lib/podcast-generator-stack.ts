@@ -21,7 +21,7 @@ export class PodcastGeneratorStack extends cdk.Stack {
     const podcastGenerator = new lambda.Function(this, 'PodcastGeneratorFunction', {
       runtime: lambda.Runtime.NODEJS_18_X,
       handler: 'podcast-generator-lambda.handler',
-      code: lambda.Code.fromAsset('lambda'),
+      code: lambda.Code.fromAsset('src/lambda'),
       timeout: cdk.Duration.minutes(5), // Increased timeout for AI processing
       memorySize: 1024, // Increased memory for processing
       environment: {
