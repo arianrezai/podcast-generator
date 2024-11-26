@@ -35,7 +35,8 @@ export class PodcastGeneratorStack extends cdk.Stack {
     podcastGenerator.addToRolePolicy(new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
       actions: [
-        'bedrock:InvokeModel'
+        'bedrock:InvokeModel',
+        'bedrock:InvokeModelWithResponseStream'
       ],
       resources: ['*'], // Scope this down in production
     }));
@@ -53,6 +54,12 @@ export class PodcastGeneratorStack extends cdk.Stack {
       s3.EventType.OBJECT_CREATED,
       new s3n.LambdaDestination(podcastGenerator),
       { suffix: '.txt' }
+    );
+
+    bucket.addEventNotification(
+      s3.EventType.OBJECT_CREATED,
+      new s3n.LambdaDestination(podcastGenerator),
+      { suffix: '.pdf' }
     );
   }
 }

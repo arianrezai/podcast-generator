@@ -1,6 +1,6 @@
 # AI-Powered Podcast Generator
 
-This project provides an automated solution for generating podcast snippets from text documents using AWS services. When you upload a text file to an S3 bucket, it automatically generates a ~1-minute podcast snippet using AI-powered text summarization and speech synthesis.
+This project provides an automated solution for generating podcast snippets from text and PDF documents using AWS services. When you upload a PDF or txt file to an S3 bucket, AI Podcast Generator automatically generates a podcast snippet using AI-powered text summarization and speech synthesis.
 
 ## Architecture
 
@@ -37,7 +37,7 @@ cdk deploy
 
 ## Usage
 
-1. Upload any text file to the created S3 bucket:
+1. Upload any text or PDF file to the created S3 bucket:
 ```bash
 aws s3 cp your-document.txt s3://your-bucket-name/
 ```
@@ -67,15 +67,4 @@ For MVP purposes, this implementation includes:
 
 Common issues:
 - If the Lambda times out, increase the timeout in the CDK stack
-- If you hit Bedrock quotas, request quota increases from AWS
 - Check CloudWatch logs for detailed error messages
-
-## Next Steps
-
-Potential improvements for production:
-- Add custom voice selection
-- Implement better error handling
-- Add support for multiple languages
-- Add audio post-processing capabilities
-- Implement proper cost controls
-- Enhance security configurations
